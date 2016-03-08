@@ -1,6 +1,3 @@
-require 'hogan_assets/version'
-require 'hogan_assets/config'
-
 module HoganAssets
   class Engine < ::Rails::Engine
     initializer "sprockets.hogan", :group => :all do |app|
