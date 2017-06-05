@@ -15,7 +15,7 @@ module HoganAssets
     Config.template_extensions.each do |ext|
       if Sprockets.respond_to?(:register_transformer)
         Sprockets.register_mime_type 'text/hogan', extensions: [".#{ext}"], charset: :unicode
-        Sprockets.register_transformer 'text/hogan', 'application/javascript', Tilt
+        Sprockets.register_transformer 'text/hogan', 'application/javascript+function', Tilt
       end
 
       if env.respond_to?(:register_engine)

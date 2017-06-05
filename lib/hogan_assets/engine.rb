@@ -6,7 +6,7 @@ module HoganAssets
         HoganAssets::Config.template_extensions.each do |ext|
           if env.respond_to?(:register_transformer)
             env.register_mime_type 'text/hogan', extensions: [".#{ext}"], charset: :unicode
-            env.register_transformer 'text/hogan', 'application/javascript', Tilt
+            env.register_transformer 'text/hogan', 'application/javascript+function', Tilt
           end
 
           if env.respond_to?(:register_engine)
