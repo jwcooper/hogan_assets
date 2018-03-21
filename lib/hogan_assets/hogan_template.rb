@@ -111,7 +111,6 @@ module HoganAssets
       end
 
       compiled_template = Hogan.compile(text)
-      template_name = scope.logical_path.inspect
 
       # Only emit the source template if we are using lambdas
       text = '' unless HoganAssets::Config.lambda_support?
