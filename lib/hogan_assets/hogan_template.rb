@@ -101,10 +101,10 @@ module HoganAssets
       template_namespace = HoganAssets::Config.template_namespace
 
       text = if @template_path.is_hamstache?
-        raise "Unable to compile #{template_path.full_path} because haml is not available. Did you add the haml gem?" unless HoganAssets::Config.haml_available?
+        raise "Unable to compile #{@template_path.full_path} because haml is not available. Did you add the haml gem?" unless HoganAssets::Config.haml_available?
         Haml::Engine.new(source, HoganAssets::Config.haml_options.merge(@options)).render
       elsif @template_path.is_slimstache?
-        raise "Unable to compile #{template_path.full_path} because slim is not available. Did you add the slim gem?" unless HoganAssets::Config.slim_available?
+        raise "Unable to compile #{@template_path.full_path} because slim is not available. Did you add the slim gem?" unless HoganAssets::Config.slim_available?
         Slim::Template.new(HoganAssets::Config.slim_options.merge(@options)) { source }.render
       else
         source
@@ -116,7 +116,7 @@ module HoganAssets
       text = '' unless HoganAssets::Config.lambda_support?
       <<-TEMPLATE
         this.#{template_namespace} || (this.#{template_namespace} = {});
-        this.#{template_namespace}[#{template_path.name}] = new Hogan.Template(#{compiled_template}, #{text.inspect}, Hogan, {});
+        this.#{template_namespace}[#{@template_path.name}] = new Hogan.Template(#{compiled_template}, #{text.inspect}, Hogan, {});
       TEMPLATE
     end
 
