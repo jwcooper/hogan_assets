@@ -24,18 +24,6 @@ module HoganAssets
       END_EXPECTED
     end
 
-    def test_hamstache_render
-      scope = make_scope '/myapp/app/assets/javascripts', 'path/to/template.hamstache'
-
-      source = "%p This is {{mustache}}"
-      template = HoganAssets::Tilt.new(scope.s_path) { source }
-
-      assert_equal <<-END_EXPECTED, template.render(scope, {})
-        this.HoganTemplates || (this.HoganTemplates = {});
-        this.HoganTemplates["path/to/template"] = new Hogan.Template(#{compiled_template haml_compiled scope, source}, "", Hogan, {});
-      END_EXPECTED
-    end
-
     def test_render_with_lambdas
       HoganAssets::Config.configure do |config|
         config.lambda_support = true

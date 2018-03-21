@@ -39,7 +39,7 @@ module HoganAssets
     extend self
 
     attr_writer :env, :lambda_support, :path_prefix, :template_extensions, :template_namespace, :haml_options, :slim_options,
-                :slimstache_extensions, :hamstache_extensions
+                :slimstache_extensions, :hamstache_extensions, :haml_enabled, :slim_enabled
 
     def configure
       yield self
@@ -57,6 +57,11 @@ module HoganAssets
 
     def haml_available?
       defined? ::Haml::Engine
+    end
+
+    def haml_enabled?
+      @haml_enabled = true if @haml_enabled.nil?
+      @haml_enabled
     end
 
     def haml_options
@@ -92,20 +97,25 @@ module HoganAssets
       @slim_options ||= {}
     end
 
+    def slim_enabled?
+      @slim_enabled = true if @slim_enabled.nil?
+      @slim_enabled
+    end
+
     def template_namespace
       @template_namespace ||= 'HoganTemplates'
     end
 
     def template_extensions
-      @template_extensions ||= "mustache#{' hamstache' if haml_available?}#{' slimstache' if slim_available?}".split
+      @template_extensions ||= ".mustache#{' .hamstache' if haml_available?}#{' .slimstache' if slim_available?}".split
     end
 
     def hamstache_extensions
-      @hamstache_extensions ||= ['hamstache']
+      @hamstache_extensions ||= ['.hamstache']
     end
 
     def slimstache_extensions
-      @slimstache_extensions ||= ['slimstache']
+      @slimstache_extensions ||= ['.slimstache']
     end
 
     def yml
