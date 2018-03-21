@@ -23,7 +23,7 @@ module HoganAssets
         sprockets_environment.register_engine(ext, HoganTemplate)
       end
     else
-      sprockets_environment.register_mime_type 'text/x-hogan-template', extensions: Config.handlebars_extensions
+      sprockets_environment.register_mime_type 'text/x-hogan-template', extensions: Config.template_extensions
       if Config.slim_enabled? && Config.slim_available?
         sprockets_environment.register_mime_type 'text/x-hogan-template', extensions: Config.slimstache_extensions
       end
