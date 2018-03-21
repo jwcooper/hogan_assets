@@ -162,7 +162,7 @@ module HoganAssets
       private
 
       def relative_path
-        @relative_path ||= template_path.gsub(/^#{HoganAssets::Config.path_prefix}\/(.*)$/i, "\\1")
+        @full_path.match(/.*#{HoganAssets::Config.path_prefix}\/((.*\/)*([^.]*)).*$/)[1]
       end
 
       def template_name
