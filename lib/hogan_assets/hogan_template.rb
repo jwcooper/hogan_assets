@@ -142,13 +142,19 @@ module HoganAssets
       end
 
       def is_hamstache?
-        file_path = full_path.to_s
-        HoganAssets::Config.hamstache_extensions.any? { |ext| file_path.to_s.end_with? ext }
+        result = false
+        ::HandlebarsAssets::Config.hamstache_extensions.each do |ext|
+          result ||= check_extension(ext)
+        end
+        result
       end
 
       def is_slimstache?
-        file_path = full_path.to_s
-        HoganAssets::Config.slimstache_extensions.any? { |ext| file_path.to_s.end_with? ext }
+        result = false
+        ::HandlebarsAssets::Config.slimstache_extensions.each do |ext|
+          result ||= check_extension(ext)
+        end
+        result
       end
 
       def name
