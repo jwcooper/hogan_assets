@@ -88,9 +88,9 @@ module HoganAssets
     end
 
     def choose_engine(data)
-      if @template_path.is_haml?
+      if @template_path.is_hamstache?
         Haml::Engine.new(data, HoganAssets::Config.haml_options)
-      elsif @template_path.is_slim?
+      elsif @template_path.is_slimstache?
         Slim::Template.new(HoganAssets::Config.slim_options) { data }
       else
         NoOpEngine.new(data)

@@ -9,7 +9,7 @@ module HoganAssets
         context.eval("Hogan.compile(#{source.inspect}, {asString: true})")
       end
 
-      private
+      protected
 
       def context
         @context ||= ExecJS.compile(source)
