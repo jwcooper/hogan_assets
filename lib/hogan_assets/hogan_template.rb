@@ -143,7 +143,7 @@ module HoganAssets
 
       def is_hamstache?
         result = false
-        ::HandlebarsAssets::Config.hamstache_extensions.each do |ext|
+        ::HoganAssets::Config.hamstache_extensions.each do |ext|
           result ||= check_extension(ext)
         end
         result
@@ -151,7 +151,7 @@ module HoganAssets
 
       def is_slimstache?
         result = false
-        ::HandlebarsAssets::Config.slimstache_extensions.each do |ext|
+        ::HoganAssets::Config.slimstache_extensions.each do |ext|
           result ||= check_extension(ext)
         end
         result
